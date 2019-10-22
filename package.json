@@ -1,0 +1,23 @@
+{
+  "name": "app_todo_nodejs",
+  "version": "1.0.0",
+  "description": "Aplicación ToDo uso - ejercitando nodejs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "a"
+  },
+  "keywords": [
+    "js",
+    "nodejs"
+  ],
+  "author": "Patricia Valdebenito",
+  "license": "ISC",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "yargs": "^14.2.0"
+  }
+}
