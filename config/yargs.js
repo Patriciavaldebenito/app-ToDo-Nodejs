@@ -1,6 +1,4 @@
 // configurar los comandos 
-
-
 const argv = require('yargs')
     .command('crear', 'crear un elemento por hacer', {
         descripcion: {
