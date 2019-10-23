@@ -1,27 +1,31 @@
 // configurar los comandos 
-const descripcion = {
-    demand: true,
-    alias: 'd',
-    desc: 'Descripción de una tarea por hacer'
-}
+const
+    description = {
+        demand: true,
+        alias: 'd',
+        desc: 'Descripción de una task por hacer'
+    }
 
-const completado = {
+const completed = {
     default: true,
     alias: 'c',
-    desc: 'Marca como competado o pendiente la tarea'
+    desc: 'Marca como competado o pendiente la task'
 }
 
 const argv = require('yargs')
-    .command('crear', 'crear un elemento por hacer', {
-        descripcion
+    .command('create', 'create un elemento por hacer', {
+
+        description
     })
 
-    .command('actualizar', 'Actualizar el estado completado de una tarea ', {
-        descripcion,
-        completado
+    .command('update', 'Actualizar el estado completed de una task ', {
+
+        description,
+        completed
     })
-    .command('borrar', 'borrar una tarea ', {
-        descripcion
+    .command('delete', 'delete una task ', {
+
+        description
     })
     .help()
     .argv;

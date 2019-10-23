@@ -1,83 +1,89 @@
 const fs = require('fs');
 const colors = require('colors');
 
-let ListPorHacer = [];
+let listToDo = [];
 
-const guardarDB = () => {
+const   saveDB = () => {
 
-    let data = JSON.stringify(ListPorHacer);
+    let data = JSON.stringify(listToDo);
     fs.writeFile('db/data.json', data, (err) => {
         if (err) throw new Error(`No se pudo grabar ${data}`, err);
     });
 }
 
-const cargarDB = () => {
+const loadDB = () => {
     try {
-        ListPorHacer = require('../db/data.json');
-        // console.log("list dentro de try cargarDB", ListPorHacer);
+        listToDo = require('../db/data.json');
+        // console.log("list dentro de try loadDB", listToDo);
     } catch (error) {
-        ListPorHacer = [];
+        listToDo= [];
     }
 }
 
-const crear = (descripcion) => {
+const create = (
+    description) => {
 
-    cargarDB();
+    loadDB();
 
-    let porHacer = {
-        descripcion,
-        completado: false
+    let toDo = {
+
+        description,
+        completed: false
     };
 
-    ListPorHacer.push(porHacer);
+    listToDo.push(toDo);
 
-    guardarDB();
+   saveDB();
 
 
-    return porHacer;
+    return toDo;
 }
 
-const getListado = () => {
-    // 1era opcion return ListPorHacer;
-    cargarDB();
-    return ListPorHacer;
+const getList = () => {
+    // 1era opcion return listToDo;
+    loadDB();
+    return listToDo;
 }
 
-const actualizar = (descripcion, completado = true) => {
-    // actualizar estado de la tarea en el documento json y 
-    cargarDB();
-    let index = ListPorHacer.findIndex(tarea => tarea.descripcion === descripcion);
+const update = (
+    description, completed = true) => {
+    // update estado de la task en el documento json y 
+    loadDB();
+    let index = listToDo.findIndex(
+task => 
+task.description ===  description);
     //console.log("n", index)
-    //let nameToDo = ListPorHacer.find(tarea => tarea.descripcion === descripcion);
+    //let nameToDo = listToDo.find(task => task. description === description);
     //console.log("nameToDo",nameToDo);
 
     if (index >= 0) {
-        ListPorHacer[index].completado = completado;
-        guardarDB();
+        listToDo[index].completed = completed;
+       saveDB();
         return true;
     } else {
         return false;
     }
 }
 
-const borrar = (descripcion) => {
-    cargarDB();
-    let nuevoListado = ListPorHacer.filter(tarea =>
-        tarea.descripcion != descripcion
-    );
+const deleteTask = (
+    description) => {
+    loadDB();
+    let nuevoListado = listToDo.filter(
+task =>  
+task. description != description  );
     // console.log(nuevoListado);
-    if (ListPorHacer.length === nuevoListado.length) {
+    if (listToDo.length === nuevoListado.length) {
         return false;
     } else {
-        ListPorHacer = nuevoListado;
-        guardarDB();
+        listToDo= nuevoListado;
+       saveDB();
         return true;
     }
 }
 
 module.exports = {
-    crear,
-    getListado,
-    actualizar,
-    borrar
+    create,
+    getList,
+    update,
+    deleteTask
 }

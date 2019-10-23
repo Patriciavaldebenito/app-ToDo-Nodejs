@@ -2,43 +2,46 @@
 //const argv = require('yargs').argv;
 //console.log(argv)
 const argv = require('./config/yargs').argv;
-const porHacer = require('./por-hacer/por-hacer');
+const toDo = require('./por-hacer/por-hacer');
 //console.log(argv);
 
-let comando = argv._[0];
-console.log('comando', comando)
+let command = argv._[0];
+console.log('command', command)
 
-switch (comando) {
+switch (command) {
 
-    case 'crear':
-        //console.log('crear por hacer');
-        let tarea = porHacer.crear(argv.descripcion);
-        console.log(tarea);
+    case 'create':
+        //console.log('create por hacer');
+        let
+            task = toDo.create(argv.description);
+        console.log(
+            task);
         break;
 
-    case 'listar':
-        let listado = porHacer.getListado();
-        for (let tarea of listado) {
+    case 'toList':
+        let list = toDo.getList();
+        for (let
+            task of list) {
             console.log('=====POR HACER==========='.green);
-            console.log(tarea.descripcion);
-            console.log('Estado:', tarea.completado);
+            console.log(task.description);
+            console.log('Estado:', task.completed);
             console.log('=====POR HACER==========='.green);
         }
-        //console.log('Mostrar todas las tareas por hacer');
+        //console.log('Mostrar todas las tasks por hacer');
         break;
 
-    case 'actualizar':
-        let actualizar = porHacer.actualizar(argv.descripcion, argv.completado);
-        console.log(actualizar);
-        //console.log('Actualizar una tarea por  hacer');
+    case 'update':
+        let update = toDo.update(argv.description, argv.completed);
+        console.log(update);
+        //console.log('Actualizar una task por  hacer');
 
         break;
-        case 'borrar':
-            let borrado = porHacer.borrar(argv.descripcion);
-            console.log(borrado);
-            break;
+    case 'delete':
+        let taskClear = toDo.deleteTask(argv.description);
+        console.log(taskClear);
+        break;
 
 
     default:
-        console.log(' El comando no es reconocido');
+        console.log(' El command no es reconocido');
 }
