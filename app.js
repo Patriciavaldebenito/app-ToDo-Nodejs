@@ -17,6 +17,14 @@ switch (comando) {
         break;
 
     case 'listar':
+        let listado = porHacer.getListado();
+
+        for (let tarea of listado){
+            console.log('=====POR HACER==========='.green);
+            console.log(tarea.descripcion);
+            console.log('Estado:', tarea.completado);
+            console.log('=====POR HACER==========='.green);
+        }
         console.log('Mostrar todas las tareas por hacer');
         break;
 

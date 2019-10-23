@@ -14,11 +14,10 @@ const guardarDB = () => {
 const cargarDB = () => {
     try {
         ListPorHacer = require('../db/data.json');
-        //console.log(ListPorHacer);
+        console.log("list dentro de try", ListPorHacer);
     } catch (error) {
         ListPorHacer = [];
     }
-
 }
 
 const crear = (descripcion) => {
@@ -33,9 +32,18 @@ const crear = (descripcion) => {
     ListPorHacer.push(porHacer);
 
     guardarDB();
+
+
     return porHacer;
 }
 
+const getListado = () => {
+   // 1era opcion return ListPorHacer;
+   cargarDB();
+   return ListPorHacer;
+}
+
 module.exports = {
-    crear
+    crear,
+    getListado
 }
