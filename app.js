@@ -6,30 +6,32 @@ const porHacer = require('./por-hacer/por-hacer');
 //console.log(argv);
 
 let comando = argv._[0];
-console.log('comando',comando)
+console.log('comando', comando)
 
 switch (comando) {
 
     case 'crear':
-        console.log('crear por hacer');
+        //console.log('crear por hacer');
         let tarea = porHacer.crear(argv.descripcion);
         console.log(tarea);
         break;
 
     case 'listar':
         let listado = porHacer.getListado();
-
-        for (let tarea of listado){
+        for (let tarea of listado) {
             console.log('=====POR HACER==========='.green);
             console.log(tarea.descripcion);
             console.log('Estado:', tarea.completado);
             console.log('=====POR HACER==========='.green);
         }
-        console.log('Mostrar todas las tareas por hacer');
+        //console.log('Mostrar todas las tareas por hacer');
         break;
 
     case 'actualizar':
-        console.log('Actualizar una tarea por  hacer');
+        let actualizar = porHacer.actualizar(argv.descripcion, argv.completado);
+        console.log(actualizar);
+        //console.log('Actualizar una tarea por  hacer');
+
         break;
 
     default:
