@@ -2,7 +2,7 @@
 //const argv = require('yargs').argv;
 //console.log(argv)
 const argv = require('./config/yargs').argv;
-const toDo = require('./por-hacer/por-hacer');
+const toDo = require('./ToDo/todo');
 //console.log(argv);
 
 let command = argv._[0];

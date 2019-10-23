@@ -3,7 +3,7 @@ const colors = require('colors');
 
 let listToDo = [];
 
-const   saveDB = () => {
+const saveDB = () => {
 
     let data = JSON.stringify(listToDo);
     fs.writeFile('db/data.json', data, (err) => {
@@ -16,7 +16,7 @@ const loadDB = () => {
         listToDo = require('../db/data.json');
         // console.log("list dentro de try loadDB", listToDo);
     } catch (error) {
-        listToDo= [];
+        listToDo = [];
     }
 }
 
@@ -33,7 +33,7 @@ const create = (
 
     listToDo.push(toDo);
 
-   saveDB();
+    saveDB();
 
 
     return toDo;
@@ -49,16 +49,14 @@ const update = (
     description, completed = true) => {
     // update estado de la task en el documento json y 
     loadDB();
-    let index = listToDo.findIndex(
-task => 
-task.description ===  description);
+    let index = listToDo.findIndex(task => task.description === description);
     //console.log("n", index)
     //let nameToDo = listToDo.find(task => task. description === description);
     //console.log("nameToDo",nameToDo);
 
     if (index >= 0) {
         listToDo[index].completed = completed;
-       saveDB();
+        saveDB();
         return true;
     } else {
         return false;
@@ -69,14 +67,14 @@ const deleteTask = (
     description) => {
     loadDB();
     let nuevoListado = listToDo.filter(
-task =>  
-task. description != description  );
+        task =>
+            task.description != description);
     // console.log(nuevoListado);
     if (listToDo.length === nuevoListado.length) {
         return false;
     } else {
-        listToDo= nuevoListado;
-       saveDB();
+        listToDo = nuevoListado;
+        saveDB();
         return true;
     }
 }
