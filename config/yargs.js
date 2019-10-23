@@ -1,4 +1,5 @@
 // configurar los comandos 
+
 const argv = require('yargs')
     .command('crear', 'crear un elemento por hacer', {
         descripcion: {
@@ -20,6 +21,13 @@ const argv = require('yargs')
             desc: 'Marca como competado o pendiente la tarea'
         }
 
+    })
+    .command('borrar', 'borrar una tarea ', {
+        descripcion: {
+            demand: true,
+            alias: 'd',
+            desc: 'borrar una tarea '
+        }
     })
     .help()
     .argv;

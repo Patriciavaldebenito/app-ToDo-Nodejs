@@ -33,6 +33,11 @@ switch (comando) {
         //console.log('Actualizar una tarea por  hacer');
 
         break;
+        case 'borrar':
+            let borrado = porHacer.borrar(argv.descripcion);
+            console.log(borrado);
+            break;
+
 
     default:
         console.log(' El comando no es reconocido');

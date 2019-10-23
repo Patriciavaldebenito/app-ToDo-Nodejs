@@ -14,7 +14,7 @@ const guardarDB = () => {
 const cargarDB = () => {
     try {
         ListPorHacer = require('../db/data.json');
-       // console.log("list dentro de try cargarDB", ListPorHacer);
+        // console.log("list dentro de try cargarDB", ListPorHacer);
     } catch (error) {
         ListPorHacer = [];
     }
@@ -44,22 +44,40 @@ const getListado = () => {
 }
 
 const actualizar = (descripcion, completado = true) => {
-    // actualizar estado de la tarea en el documento json
+    // actualizar estado de la tarea en el documento json y 
     cargarDB();
     let index = ListPorHacer.findIndex(tarea => tarea.descripcion === descripcion);
+    //console.log("n", index)
+    //let nameToDo = ListPorHacer.find(tarea => tarea.descripcion === descripcion);
+    //console.log("nameToDo",nameToDo);
 
-   if(index >= 0){
-    ListPorHacer[index].completado = completado;
-    guardarDB();
-    return true;
-   } else {
-       return false;
-   }
+    if (index >= 0) {
+        ListPorHacer[index].completado = completado;
+        guardarDB();
+        return true;
+    } else {
+        return false;
+    }
+}
 
+const borrar = (descripcion) => {
+    cargarDB();
+    let nuevoListado = ListPorHacer.filter(tarea =>
+        tarea.descripcion != descripcion
+    );
+    // console.log(nuevoListado);
+    if (ListPorHacer.length === nuevoListado.length) {
+        return false;
+    } else {
+        ListPorHacer = nuevoListado;
+        guardarDB();
+        return true;
+    }
 }
 
 module.exports = {
     crear,
     getListado,
-    actualizar
+    actualizar,
+    borrar
 }
